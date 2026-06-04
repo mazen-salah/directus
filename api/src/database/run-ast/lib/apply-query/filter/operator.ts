@@ -257,11 +257,11 @@ function applyOperatorToRaw(
 	}
 
 	if (operator === '_ieq') {
-		dbQuery[logical].whereRaw(`LOWER(??) = ?`, [raw, `${compareValue.toLowerCase()}`]);
+		dbQuery[logical].whereRaw(`LOWER(??) = ?`, [raw, `${String(compareValue).toLowerCase()}`]);
 	}
 
 	if (operator === '_nieq') {
-		dbQuery[logical].whereRaw(`LOWER(??) <> ?`, [raw, `${compareValue.toLowerCase()}`]);
+		dbQuery[logical].whereRaw(`LOWER(??) <> ?`, [raw, `${String(compareValue).toLowerCase()}`]);
 	}
 
 	if (operator === '_contains') {
@@ -273,11 +273,11 @@ function applyOperatorToRaw(
 	}
 
 	if (operator === '_icontains') {
-		dbQuery[logical].whereRaw(`LOWER(??) LIKE ?`, [raw, `%${compareValue.toLowerCase()}%`]);
+		dbQuery[logical].whereRaw(`LOWER(??) LIKE ?`, [raw, `%${String(compareValue).toLowerCase()}%`]);
 	}
 
 	if (operator === '_nicontains') {
-		dbQuery[logical].whereRaw(`LOWER(??) NOT LIKE ?`, [raw, `%${compareValue.toLowerCase()}%`]);
+		dbQuery[logical].whereRaw(`LOWER(??) NOT LIKE ?`, [raw, `%${String(compareValue).toLowerCase()}%`]);
 	}
 
 	if (operator === '_starts_with') {
@@ -289,11 +289,11 @@ function applyOperatorToRaw(
 	}
 
 	if (operator === '_istarts_with') {
-		dbQuery[logical].whereRaw(`LOWER(??) LIKE ?`, [raw, `${compareValue.toLowerCase()}%`]);
+		dbQuery[logical].whereRaw(`LOWER(??) LIKE ?`, [raw, `${String(compareValue).toLowerCase()}%`]);
 	}
 
 	if (operator === '_nistarts_with') {
-		dbQuery[logical].whereRaw(`LOWER(??) NOT LIKE ?`, [raw, `${compareValue.toLowerCase()}%`]);
+		dbQuery[logical].whereRaw(`LOWER(??) NOT LIKE ?`, [raw, `${String(compareValue).toLowerCase()}%`]);
 	}
 
 	if (operator === '_ends_with') {
@@ -305,11 +305,11 @@ function applyOperatorToRaw(
 	}
 
 	if (operator === '_iends_with') {
-		dbQuery[logical].whereRaw(`LOWER(??) LIKE ?`, [raw, `%${compareValue.toLowerCase()}`]);
+		dbQuery[logical].whereRaw(`LOWER(??) LIKE ?`, [raw, `%${String(compareValue).toLowerCase()}`]);
 	}
 
 	if (operator === '_niends_with') {
-		dbQuery[logical].whereRaw(`LOWER(??) NOT LIKE ?`, [raw, `%${compareValue.toLowerCase()}`]);
+		dbQuery[logical].whereRaw(`LOWER(??) NOT LIKE ?`, [raw, `%${String(compareValue).toLowerCase()}`]);
 	}
 
 	if (operator === '_gt') {

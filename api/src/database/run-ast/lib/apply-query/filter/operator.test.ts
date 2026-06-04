@@ -142,3 +142,15 @@ test('applyOperator throws InvalidQueryError for non-numeric array value on inte
 		InvalidQueryError,
 	);
 });
+
+test('applyOperator coerces non-string values for case-insensitive operators', async () => {
+	const db = vi.mocked(knex.default({ client: Client_SQLite3 }));
+	const queryBuilder = db.queryBuilder();
+
+	// Regression: a numeric value with a case-insensitive operator used to call
+	// `compareValue.toLowerCase()` on a number and throw a TypeError (HTTP 500).
+	expect(() => applyOperator(db, queryBuilder, schema, 'articles.title', '_icontains', 123)).not.toThrow();
+
+	const rawQuery = queryBuilder.toSQL();
+	expect(rawQuery.bindings).toContain('%123%');
+});
